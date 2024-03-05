@@ -32,6 +32,7 @@ npm install @nestjs/config --save
 ## Instalacion TYPEORM y DRIVER POSTGRESQl MySQL MariaDB
 Simplifica la interacción con bases de datos relacionales en aplicaciones Node.js
 ```
+npm install @nestjs/typeorm
 npm install typeorm --save
 npm install pg --save
 npm install mysql --save

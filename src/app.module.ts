@@ -20,14 +20,24 @@ import { AuthModule } from './auth/auth.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '192.168.0.94',
+      // host: '192.168.0.94',
+      host: 'localhost',
       port: 5432,
       username: 'cesar',
       password: 'trade488',
       database: 'planet_erp',
-      entities: [User,Department],
-      // autoLoadEntities: true,
+      // entities: [User,Department],
+      autoLoadEntities: true,
       synchronize: true,
+      ssl: process.env.POSTGRES_SSL === "true",
+      extra: {
+        ssl:
+          process.env.POSTGRES_SSL === "true"
+            ? {
+                rejectUnauthorized: false,
+              }
+            : null,
+      }, 
     }),
     UsersModule, 
     UsersRoleModule, DepartmentsModule, AuthModule],

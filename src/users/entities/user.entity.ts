@@ -1,4 +1,4 @@
-import { Column, DeleteDateColumn, Entity, ManyToMany } from "typeorm";
+import { Column, DeleteDateColumn, Entity, JoinTable, ManyToMany } from "typeorm";
 import { Role } from "../../common/enums/role.enum";
 import { Department } from "src/departments/entities/department.entity";
 
@@ -20,6 +20,17 @@ export class User {
     role: string;
   
     @ManyToMany(() => Department, department => department.users)
+    @JoinTable({
+        name: 'users_departments_relation',
+        joinColumn: {
+          name: 'user_id',
+          referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+          name: 'department_id',
+          referencedColumnName: 'id',
+        },
+    })
     departmets: Department[]
     
     @Column({type: "int",nullable: true})

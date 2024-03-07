@@ -6,6 +6,10 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { UsersRoleModule } from './users_role/users_role.module';
 import { User } from './users/entities/user.entity';
+import { DepartmentsModule } from './departments/departments.module';
+import { Department } from './departments/entities/department.entity';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -21,13 +25,13 @@ import { User } from './users/entities/user.entity';
       username: 'cesar',
       password: 'trade488',
       database: 'planet_erp',
-      entities: [User],
+      entities: [User,Department],
       // autoLoadEntities: true,
       synchronize: true,
     }),
     UsersModule, 
-    UsersRoleModule],
+    UsersRoleModule, DepartmentsModule, AuthModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}

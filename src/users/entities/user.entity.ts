@@ -1,5 +1,6 @@
-import { Column, DeleteDateColumn, Entity } from "typeorm";
+import { Column, DeleteDateColumn, Entity, ManyToMany } from "typeorm";
 import { Role } from "../../common/enums/role.enum";
+import { Department } from "src/departments/entities/department.entity";
 
 @Entity({name: "users"})
 export class User {
@@ -12,19 +13,22 @@ export class User {
     @Column({ type: "varchar", length: 200, unique: true, nullable: false })
     email: string;
   
-    @Column({ type: "varchar", length: 8, nullable: false })
+    @Column({ type: "varchar", length: 150, nullable: false })
     password: string;
   
     @Column({ type: "enum", enum:Role,default: Role.USER })
     role: string;
   
+    @ManyToMany(() => Department, department => department.users)
+    departmets: Department[]
+    
     @Column({type: "int",nullable: true})
     funcionariosid:number
 
     @Column({type: "boolean",default: true})
     disabled: number;
 
-    @Column()
+    @Column({nullable: true})
     createat: Date;
 
     @DeleteDateColumn()

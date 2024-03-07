@@ -145,5 +145,18 @@ export class User {
     deletedAt: Date;
 }
 
-
 ```
+
+Swagger
+```
+npm install --save @nestjs/swaggerextjs\erp2\backend
+
+  const config = new DocumentBuilder()
+    .setTitle('PLANET BUSSINESS ERP')
+    .setDescription('API ERP')
+    .setVersion('1.0')
+    .addTag('erp')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+  ```

@@ -71,3 +71,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+git config user.name "Cesar
+git config user.email "sesarudoco@gmail.com"
+
+git add .
+git commit -m "segundo commit"
+git push -u origin master

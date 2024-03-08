@@ -17,24 +17,24 @@ export class UsersService {
     return this.userRepository.save(createUserDto);
   }
 
-  async updateDepartment(userid:any,body:any){
-    const user = await this.userRepository.findOneBy(userid)
+  // async updateDepartment(userid:any,body:any){
+  //   const user = await this.userRepository.findOneBy(userid)
 
-    if(!user){
-      throw new BadRequestException('user no existe');
-    }
+  //   if(!user){
+  //     throw new BadRequestException('user no existe');
+  //   }
 
-    const department = await this.departmentRepository.findBy(body.departments);
+  //   const department = await this.departmentRepository.findBy(body.departments);
 
-    await this.findOne(userid);
+  //   await this.findOne(userid);
 
-    return await this.userRepository.update(
-      userid,{
-        departmets:department
-      }
-    )
+  //   return await this.userRepository.update(
+  //     userid,{
+  //       departmets:department
+  //     }
+  //   )
 
-  }
+  // }
 
   findOneByEmail(email: string){
     return this.userRepository.findOneBy({email})

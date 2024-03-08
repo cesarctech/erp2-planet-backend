@@ -29,10 +29,10 @@ export class UsersController {
   //   return this.usersService.update(+id, updateUserDto);
   // }
 
-  @Patch(':id')
-  updateDepartment(@Param('id') id: number, @Body:{departments:[]}) {
-    return this.usersService.updateDepartment(id,@Body);
-  }
+  // @Patch(':id')
+  // updateDepartment(@Param('id') id: number, @Body:{departments:[]}) {
+  //   return this.usersService.updateDepartment(id,@Body);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

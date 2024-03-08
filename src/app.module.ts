@@ -10,6 +10,7 @@ import { DepartmentsModule } from './departments/departments.module';
 import { Department } from './departments/entities/department.entity';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { UsersDepartmentsRelationModule } from './users_departments_relation/users_departments_relation.module';
 
 
 @Module({
@@ -20,8 +21,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      // host: '192.168.0.94',
-      host: 'localhost',
+      host: '192.168.0.94',
+      // host: 'localhost',
       port: 5432,
       username: 'cesar',
       password: 'trade488',
@@ -40,7 +41,7 @@ import { AuthModule } from './auth/auth.module';
       }, 
     }),
     UsersModule, 
-    UsersRoleModule, DepartmentsModule, AuthModule],
+    UsersRoleModule, DepartmentsModule, AuthModule,  UsersDepartmentsRelationModule],
   controllers: [AppController],
   providers: [AppService, AuthService],
 })

@@ -19,7 +19,7 @@ export class User {
     @Column({ type: "enum", enum:Role,default: Role.USER })
     role: string;
   
-    @ManyToMany(() => Department, department => department.users)
+    @ManyToMany(() => Department, department => department.users,{eager:true})
     @JoinTable({
         name: 'users_departments_relation',
         joinColumn: {
@@ -30,8 +30,9 @@ export class User {
           name: 'department_id',
           referencedColumnName: 'id',
         },
+        
     })
-    departmets: Department[]
+    departments: Department[]
     
     @Column({type: "int",nullable: true})
     funcionariosid:number

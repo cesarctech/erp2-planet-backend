@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Department } from './entities/department.entity';
-import { Repository } from 'typeorm';
+import { Repository,In } from 'typeorm';
 
 @Injectable()
 export class DepartmentsService {
@@ -23,8 +23,14 @@ export class DepartmentsService {
     return this.departmentRepo.find();
   }
 
-  findOne(id: number) {
-    return this.departmentRepo.findOneBy({id});
+  async findOne(id: number) {
+    // return this.departmentRepo.findOneBy({id});
+    const department =  await this.departmentRepo.findOneBy({id});
+    console.log('ddd=',department)
+    if(!department){
+      throw new BadRequestException(id);
+    }
+    return department
   }
 
   update(id: number, updateDepartmentDto: UpdateDepartmentDto) {
@@ -34,4 +40,11 @@ export class DepartmentsService {
   remove(id: number) {
     return `This action removes a #${id} department`;
   }
+
+  // USER - DEPARTMENTS
+
+  findAllByUser(id:number[]){
+    return this.departmentRepo.findBy({id: In(id)});
+  }
+
 }

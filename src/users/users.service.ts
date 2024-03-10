@@ -17,6 +17,15 @@ export class UsersService {
     return this.userRepository.save(createUserDto);
   }
 
+  createUserDepartment(body:any){
+    return this.userRepository.save(body);
+  }
+
+  // updateUserDepartment(id:number,body:any){
+  //   return this.userRepository.update(id,
+
+  //     )
+  // }
   // async updateDepartment(userid:any,body:any){
   //   const user = await this.userRepository.findOneBy(userid)
 

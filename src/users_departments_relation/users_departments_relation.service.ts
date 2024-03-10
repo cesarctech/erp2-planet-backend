@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, ConsoleLogger, Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
-import { CreateDto } from './dto/create.dto';
+import { CreateUserDepartmentDto } from './dto/create-user-department.dto';
 import { DepartmentsService } from 'src/departments/departments.service';
 
 
@@ -12,14 +12,69 @@ export class UsersDepartmentsRelationService {
     ){}
 
 
-    async create({users_id,departments_id}:CreateDto){
+    async create({users_id,departments_id}:CreateUserDepartmentDto){
         const user = await this.usersService.findOne(users_id);
-        const userdepartments = await user.departmets;
 
-        const  department = await this.departmentsService.findOne(departments_id);
-        user.departmets.push(department);
-        console.log(user,userdepartments)
-        return await user.save();
+        if(!user){
+            throw new BadRequestException('Usuario no existe!!')
+        }
 
+        const  department = await this.departmentsService.findAllByUser([3,4,5]);
+        const  department2 = await this.departmentsService.findOne(4);
+
+        if(!department){
+            throw new BadRequestException('Departamento no existe!!')
+        }
+
+        // const userdepartments = await user.departmets;
+        console.log(user,department)
+
+        user.departments = department;
+         
+        return await this.usersService.createUserDepartment(user);
+        // return true;
+    }
+
+    async update({users_id,departments_id}:CreateUserDepartmentDto){
+        const user = await this.usersService.findOne(users_id);
+        // console.log(user)
+        if(!user){
+            throw new BadRequestException('Usuario no existe!!')
+        }
+
+        const  department = await this.departmentsService.findAllByUser([5,9]);
+
+        const  dp = await Promise.all(
+            departments_id.map(async(dp) => {
+                try {
+                    const department = await this.departmentsService.findOne(dp) ;
+                    return department;
+                } catch (error) {
+                    throw error;
+                }
+                
+                })
+            )
+
+        console.log(dp)
+        // const dp = departments_id.map((dp) => console.log(dp))
+
+        if(department.length === 0){
+            throw new BadRequestException('Departamento no existe!!')
+        }
+        if (!user.departments) {
+            user.departments = []; // Initialize as empty array if needed
+          }
+        // const userdepartments = await user.departmets;
+        // console.log(user,department)
+
+        // user.departments=[...user.departments,...department];
+        // console.log(user.departments,department)
+
+        user.departments=[...user.departments,...department]
+
+        
+        return await this.usersService.createUserDepartment(user);
+        // return true;
     }
 }

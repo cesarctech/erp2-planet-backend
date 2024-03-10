@@ -12,7 +12,7 @@ export class Department {
     @Column({ type: "varchar", length: 500 })
     description: string;
 
-    @ManyToMany(() => User, user => user.departmets)
+    @ManyToMany(() => User, user => user.departments)
     @JoinTable({
         name: 'users_departments_relation',
         joinColumn: {

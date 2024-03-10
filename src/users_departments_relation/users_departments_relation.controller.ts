@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { UsersDepartmentsRelationService } from './users_departments_relation.service';
-import { CreateDto } from './dto/create.dto';
+import { CreateUserDepartmentDto } from './dto/create-user-department.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('user-department')
@@ -11,8 +11,8 @@ export class UsersDepartmentsRelationController {
     ){}
 
     @Post('user-department')
-    create(@Body() createDto: CreateDto){
-        return this.userDepartment.create(createDto);
+    create(@Body() createDto: CreateUserDepartmentDto){
+        return this.userDepartment.update(createDto);
     }
 
 }

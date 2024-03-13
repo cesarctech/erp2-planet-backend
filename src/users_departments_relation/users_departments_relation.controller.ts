@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, ParseArrayPipe, ParseIntPipe, Post } from '@nestjs/common';
 import { UsersDepartmentsRelationService } from './users_departments_relation.service';
 import { CreateUserDepartmentDto } from './dto/create-user-department.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -11,9 +11,11 @@ export class UsersDepartmentsRelationController {
     ){}
 
     @Post('user-department')
-    create(@Body() createDto: CreateUserDepartmentDto){
-        return this.userDepartment.update(createDto);
+    // create(@Body() createDto: CreateUserDepartmentDto){
+    //     return this.userDepartment.update(createDto);
+    // }
+    create(@Param('id',ParseIntPipe) id:number,@Param('id2',ParseArrayPipe) id2:number){
+        return this.userDepartment.update({id,id2});
     }
-
 }
 

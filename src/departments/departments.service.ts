@@ -24,10 +24,8 @@ export class DepartmentsService {
   }
 
   async findOne(id: number) {
-    // return this.departmentRepo.findOneBy({id});
     const department =  await this.departmentRepo.findOneBy({id});
-    console.log('ddd=',department)
-    if(!department){
+      if(!department){
       throw new BadRequestException(id);
     }
     return department

@@ -42,6 +42,15 @@ Obtiene actualizaciones del repositorio remoto y las fusiona con tu rama local.
 git pull origin master
 ```
 
+
+Pull forzado avanzado.
+
+```
+git fetch origin master --prune
+git reset --hard origin/master
+```
+
+
 ## Instalacion NestJS
 
 ```

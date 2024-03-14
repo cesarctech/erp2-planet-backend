@@ -8,7 +8,6 @@ export class CreateUserDepartmentDto{
     @ArrayNotEmpty({ message: 'Department IDs are required.' })
      @IsArray({ message: 'Department IDs must be an array of numbers.' })
     // @ValidateNested({ each: true })
-    // @IsNumber()
     @IsNumber({},{ each: true,message:'tiene que ser numerico'} )
     departments_id:number[];
 }

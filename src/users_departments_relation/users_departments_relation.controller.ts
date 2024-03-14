@@ -1,4 +1,4 @@
-import { Body, Controller, Param, ParseArrayPipe, ParseIntPipe, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Param, ParseArrayPipe, ParseIntPipe, Post, UsePipes } from '@nestjs/common';
 import { UsersDepartmentsRelationService } from './users_departments_relation.service';
 import { CreateUserDepartmentDto } from './dto/create-user-department.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -10,12 +10,15 @@ export class UsersDepartmentsRelationController {
         private readonly userDepartment:UsersDepartmentsRelationService
     ){}
 
-    @Post('user-department')
-    // create(@Body() createDto: CreateUserDepartmentDto){
-    //     return this.userDepartment.update(createDto);
-    // }
-    create(@Param('id',ParseIntPipe) id:number,@Param('id2',ParseArrayPipe) id2:number){
-        return this.userDepartment.update({id,id2});
+    @Post('user-department')  
+    @UsePipes(new ParseArrayPipe())
+    create(@Body() createDto: CreateUserDepartmentDto){
+        console.log(createDto.departments_id)
+        if (createDto.departments_id.some(id => id < 0)) {
+            throw new BadRequestException('Los valores de id2 no pueden ser negativos');
+        }
+        return this.userDepartment.update(createDto);
     }
+
 }
 

@@ -1,3 +1,4 @@
+import { ParseIntPipe, UsePipes } from "@nestjs/common";
 import { ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, MinLength, NotEquals, ValidateNested } from "class-validator";
 
 export class CreateUserDepartmentDto{

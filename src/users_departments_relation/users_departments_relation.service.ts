@@ -36,7 +36,7 @@ export class UsersDepartmentsRelationService {
         // return true;
     }
 
-    async update({users_id,departments_id}){
+    async update({users_id,departments_id}:CreateUserDepartmentDto){
      
         console.log("ssssss=",departments_id)
         if(departments_id.length === 0){

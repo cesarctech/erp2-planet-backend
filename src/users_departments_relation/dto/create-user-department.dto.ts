@@ -11,4 +11,10 @@ export class CreateUserDepartmentDto{
     // @ValidateNested({ each: true })
     @IsNumber({},{ each: true,message:'tiene que ser numerico'} )
     departments_id:number[];
+
+    // {
+    //     "users_id":1,
+    //     "departments_id":[]
+    // }   
+
 }

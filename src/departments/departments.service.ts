@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,7 +26,7 @@ export class DepartmentsService {
   async findOne(id: number) {
     const department =  await this.departmentRepo.findOneBy({id});
       if(!department){
-      throw new BadRequestException(id);
+      throw new NotFoundException("No Existe este codigo "+id);
     }
     return department
   }

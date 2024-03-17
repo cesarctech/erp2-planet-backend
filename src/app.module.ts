@@ -9,7 +9,7 @@ import { DepartmentsModule } from './departments/departments.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersDepartmentsRelationModule } from './users_departments_relation/users_departments_relation.module';
-import { UserDepartmentMiddleware } from './common/enums/middleware/user-department.middleware';
+import { UserDepartmentMiddleware } from './common/middleware/user-department.middleware';
 
 
 @Module({
@@ -20,8 +20,8 @@ import { UserDepartmentMiddleware } from './common/enums/middleware/user-departm
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '192.168.0.94',
-      // host: 'localhost',
+      // host: '192.168.0.94',
+      host: 'localhost',
       port: 5432,
       username: 'cesar',
       password: 'trade488',
@@ -44,10 +44,13 @@ import { UserDepartmentMiddleware } from './common/enums/middleware/user-departm
   controllers: [AppController],
   providers: [AppService, AuthService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(UserDepartmentMiddleware)
-      .forRoutes({path:'users-departments-relation/user-department',method:RequestMethod.ALL})
-  }
-}
+export class AppModule  {}
+
+// FOR MIDDLEWARE
+// export class AppModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer
+//       .apply(UserDepartmentMiddleware)
+//       .forRoutes({path:'users-departments-relation/user-department',method:RequestMethod.ALL})
+//   }
+// }

@@ -10,6 +10,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersDepartmentsRelationModule } from './users_departments_relation/users_departments_relation.module';
 import { UserDepartmentMiddleware } from './common/middleware/user-department.middleware';
+import { FuncionariosModule } from './funcionarios/funcionarios.module';
 
 
 @Module({
@@ -20,8 +21,8 @@ import { UserDepartmentMiddleware } from './common/middleware/user-department.mi
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      // host: '192.168.0.94',
-      host: 'localhost',
+      host: '192.168.0.94',
+      // host: 'localhost',
       port: 5432,
       username: 'cesar',
       password: 'trade488',
@@ -40,7 +41,7 @@ import { UserDepartmentMiddleware } from './common/middleware/user-department.mi
       }, 
     }),
     UsersModule, 
-    UsersRoleModule, DepartmentsModule, AuthModule,  UsersDepartmentsRelationModule],
+    UsersRoleModule, DepartmentsModule, AuthModule,  UsersDepartmentsRelationModule, FuncionariosModule],
   controllers: [AppController],
   providers: [AppService, AuthService],
 })

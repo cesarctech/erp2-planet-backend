@@ -24,6 +24,6 @@ export class UsersDepartmentsRelationController {
   @Post('user-department')
   // @UsePipes(new testPipe())
   create(@Body() createDto: CreateUserDepartmentDto) {
-    return this.userDepartment.update(createDto);
+    return this.userDepartment.create(createDto);
   }
 }

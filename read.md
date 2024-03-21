@@ -50,6 +50,21 @@ git fetch origin master --prune
 git reset --hard origin/master
 ```
 
+verifica la rama local master y el repositorio remoto 
+
+```
+git branch -vv
+* master 7feb2a2 [origin/master] middlewear
+
+```
+
+verifica la rama local que commit es 
+
+```
+git show 7feb2a2
+
+```
+
 
 ## Instalacion NestJS
 
@@ -169,3 +184,7 @@ npm install --save @nestjs/swaggerextjs\erp2\backend
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
   ```
+
+npm i -g typeorm-model-generator
+
+typeorm-model-generator -h 192.168.0.11 -d planetb_ventas -u planetb_ventas -x 123mudar -e mariadb -o ./typegen -s public -p 3306

@@ -17,30 +17,6 @@ export class UsersDepartmentsRelationService {
 
   async create({ users_id, departments_id }: CreateUserDepartmentDto) {
     const user = await this.usersService.findOne(users_id);
-
-    if (!user) {
-      throw new BadRequestException('Usuario no existe!!');
-    }
-
-    const department = await this.departmentsService.findAllByUser([3, 4, 5]);
-    const department2 = await this.departmentsService.findOne(4);
-
-    if (!department) {
-      throw new BadRequestException('Departamento no existe!!');
-    }
-
-    // const userdepartments = await user.departmets;
-    console.log(user, department);
-
-    user.departments = department;
-
-    return await this.usersService.createUserDepartment(user);
-    // return true;
-  }
-
-  async update({ users_id, departments_id }: CreateUserDepartmentDto) {
-
-    const user = await this.usersService.findOne(users_id);
     if (!user) {
       throw new NotFoundException('Usuario no existe!!');
     }

@@ -1,11 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFuncionarioDto } from './dto/create-funcionario.dto';
 import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Funcionario } from './entities/funcionario.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class FuncionariosService {
-  create(createFuncionarioDto: CreateFuncionarioDto) {
-    return 'This action adds a new funcionario';
+  constructor(
+    @InjectRepository(Funcionario)
+    private readonly funcionarioRepository:Repository<Funcionario>
+  ){}
+  async create(createFuncionarioDto: CreateFuncionarioDto) {
+    return await this.funcionarioRepository.save({
+      ...createFuncionarioDto
+    });
   }
 
   findAll() {

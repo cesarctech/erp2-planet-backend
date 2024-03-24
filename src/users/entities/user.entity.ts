@@ -1,6 +1,7 @@
-import { Column, DeleteDateColumn, Entity, JoinTable, ManyToMany } from "typeorm";
+import { Column, DeleteDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne } from "typeorm";
 import { Role } from "../../common/enums/role.enum";
 import { Department } from "src/departments/entities/department.entity";
+import { Funcionario } from "src/funcionarios/entities/funcionario.entity";
 
 @Entity({name: "users"})
 export class User {
@@ -34,8 +35,12 @@ export class User {
     })
     departments: Department[]
     
-    @Column({type: "int",nullable: true})
-    funcionariosid:number
+    // @Column({type: "int",nullable: true})
+    // funcionariosid:number
+    @OneToOne(() => Funcionario)
+    @JoinColumn({ name: "funcionariosid"})
+    funcionarios: Funcionario
+
 
     @Column({type: "boolean",default: true})
     disabled: number;

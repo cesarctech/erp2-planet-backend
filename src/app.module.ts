@@ -21,8 +21,8 @@ import { FuncionariosModule } from './funcionarios/funcionarios.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      // host: '192.168.0.94',
-      host: 'localhost',
+      host: '192.168.0.94',
+      // host: 'localhost',
       port: 5432,
       username: 'cesar',
       password: 'trade488',
